@@ -46,7 +46,7 @@
           <li><a class="nav-link scrollto" href="#features">Features</a></li>
         
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" target="_blank" href="#learn">Learn Web Development</a></li>
+          <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
           <li><a class="getstarted scrollto" target="_blank" href="editor.html">CodeFlow Editor</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -180,37 +180,115 @@
         </div> <!-- / row -->
 
         <!-- Feature Tabs -->
-		
-		
-		<!-- ======= Learn Section ======= -->
-    <section id="learn" class="about">
+		   <!-- ======= F.A.Q Section ======= -->
+       <section id="faq" class="faq">
 
-      <div class="container" data-aos="fade-up">
-        <div class="row gx-0">
-
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="content">
-              <h2>SkillSwirl: Learn Frontend,Backend and Full Stack Development</h2>
-              <p>
-                SkillSwirl was founded in 2023 with a mission to provide an enjoyable,free and efficient learning experience for people of all ages. They have gathered every free resource available over the internet and provided a platform to access this resources efficiently. They have provided them with games to make the process of acquiring new skills more engaging and entertaining.
-              </p>
-              <div class="text-center text-lg-start">
-                <a href="thenewbycoder.github.io/SkillSwirl" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span>Go to SkillSwirl</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
+        <div class="container" data-aos="fade-up">
+  
+          <header class="section-header">
+            <h2>F.A.Q</h2>
+            <p>Frequently Asked Questions</p>
+          </header>
+  
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- F.A.Q List 1-->
+              <div class="accordion accordion-flush" id="faqlist1">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                      What is this website for?
+                    </button>
+                  </h2>
+                  <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                    <div class="accordion-body">
+                      This website serves as an HTML, CSS, and JS compiler. It enables you to write and experiment with your HTML, CSS, and JavaScript code in real-time, providing instant visual feedback.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                      How can I use this editor effectively?
+                    </button>
+                  </h2>
+                  <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                    <div class="accordion-body">
+                      In the "HTML Code" section, input your HTML markup.
+                      In the "CSS Code" section, enter your desired styling using CSS.
+                      In the "JS Code" section, add any interactive functionality with JavaScript.
+                      The "Output" section will display the live result of your combined code.  
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                      Can I copy my code to use elsewhere?                    </button>
+                  </h2>
+                  <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                    <div class="accordion-body">
+                      Yes, you can copy your code easily. Each section features a "Copy" button (clipboard icon) that lets you copy the respective code segment to your clipboard for pasting elsewhere.
+                    </div>
+                  </div>
+                </div>
+  
               </div>
             </div>
+  
+            <div class="col-lg-6">
+  
+              <!-- F.A.Q List 2-->
+              <div class="accordion accordion-flush" id="faqlist2">
+  
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-1">
+                      What's the purpose of the "Reset" button?
+                    </button>
+                  </h2>
+                  <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                    <div class="accordion-body">
+                      The "Reset" button in the "Output" section wipes all code in the editor and clears the output area. This action allows you to start anew with your coding efforts.                    </div>
+                  </div>
+                </div>
+  
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-2">
+                      How does the "Save as File" button work?
+                    </button>
+                  </h2>
+                  <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                    <div class="accordion-body">
+                      The "Save as File" button enables you to save your entire code (HTML, CSS, and JS) as an HTML file. Upon clicking, the code is downloaded as a file for future reference or sharing.                    </div>
+                  </div>
+                </div>
+  
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-3">
+                      Are there limitations on the amount of code I can input?
+                    </button>
+                  </h2>
+                  <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                    <div class="accordion-body">
+                      While there's no strict code limit, bear in mind that excessively large code snippets could impact performance. It's recommended to keep your code manageable for optimal usage.                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+  
           </div>
-
-          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
-
+  
         </div>
-      </div>
-
-    </section><!-- End About Section -->
+  
+      </section><!-- End F.A.Q Section -->
+		
+		<!-- End About Section -->
 
 		
 		
@@ -226,7 +304,7 @@
       }
 
       a {
-        color: #ff4500;
+        color: #3b5998;
         text-decoration: none;
       }
 
@@ -281,11 +359,11 @@
 		<section id="contact">
            <h2>Contact Us</h2>
       <ul class="contact-list">
-        <li><a href="" target="_blank"><img src="twitter.png"></img><i class="fab fa-twitter"></i></a></li>
+        <li><a href="https://twitter.com/VrushketM31712?t=wsWoGu-nmFc1JuRYQNN-7g&s=09" target="_blank"><img src="twitter.png"></img><i class="fab fa-twitter"></i></a></li>
         <li><a href="https://instagram.com/__vrushi__09?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D" target="_blank"><img src="instagram.png"></img><i class="fab fa-instagram"></i></a></li>
-        <li><a href="" target="_blank"><img src="discord.png"></img><i class="fab fa-discord"></i></a></li>
+        <li><a href="https://discord.gg/nxe4fC3n" target="_blank"><img src="discord.png"></img><i class="fab fa-discord"></i></a></li>
         <li><a href="https://github.com/Vrushi0912" target="_blank"><img src="github.png"></img><i class="fab fa-github"></i></a></li>
-        <li><a href=""><img src="email.png"></img><i class="fas fa-envelope"></i></a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#inbox"><img src="email.png"></img><i class="fas fa-envelope"></i></a></li>
       </ul>
 	  </section>
 <br>
@@ -294,6 +372,49 @@
         </div>
       </div>
     </div>
+	
+	  <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <img src="assets/img/logo.png" alt="">
+              <span>FlexStart</span>
+            </a>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/VrushketM31712?t=wsWoGu-nmFc1JuRYQNN-7g&s=09" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=100095689054459" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://instagram.com/__vrushi__09?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+		   <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>
+              Nwali,Kumbhalawathar<br>
+              Ratnagiri, Pin 415639<br>
+              Maharashtra<br><br>
+              <strong>Phone:</strong> +91 8010447859<br>
+              <strong>Email:</strong> vrushketmulye@gami.com<br>
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 	
     <div class="container">
       <div class="copyright">
@@ -304,7 +425,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">Vrushket Mulye</a>
+        Designed by Vrushket Mulye</a>
       </div>
     </div>
   </footer><!-- End Footer -->
