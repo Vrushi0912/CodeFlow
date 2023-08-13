@@ -6,6 +6,8 @@
   <title>CodeFlow Editor</title>
   <link href="logocode.png" rel="icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     /* ... Existing CSS ... */
     /* Adjust the position of the "Toggle Dark Mode" button */
@@ -46,10 +48,22 @@
     .code-editor {
       height: 200px;
     }
+    .fullscreen-mode .btn-fullscreen {
+      display: none;
+    }
+    .fullscreen-mode #preview-window {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+ 
+    
+  
   </style>
 </head>
 
 <body class="d-flex flex-column h-100">
+
   <main class="flex-shrink-0">
     <div class="container">
       <center>
@@ -58,6 +72,7 @@
       </center>
     </div>
   </main>
+ 
   <section>
     <!-- ... Existing code sections ... -->
 
@@ -104,11 +119,19 @@
         </div>
       </div>
     </div>
+    
     <div class="container mt-3">
       <button type="button" class="btn btn-primary" onclick="saveCodeToFile()">Save Code</button>
       <button type="button" class="btn btn-secondary" onclick="loadCodeFromFile()">Load Code</button>
       <button type="button" class="btn btn-warning" onclick="resetEditor()">Reset Editor</button>
-      <button type="button" class="btn btn-success" onclick="toggleFullscreenMode()">Fullscreen Mode</button>
+      <button type="button" class="btn btn-primary" onclick="runCode()">Run Code</button>
+      <button type="button" id="bt1"  class="btn btn-info">Full screen</button>
+      <button type="button" id="bt2"  class="btn btn-danger">Close Full screen</button>
+     <button type="button" class="btn btn-success" onclick="shareCode()">Share</button>
+     <button type="button" class="btn btn-success" onclick="exportCode()">Export Code</button>
+
+
+      
     </div>
   </section>
   <section style="padding-top:30px; padding-bottom: 10px;">
@@ -119,7 +142,7 @@
           <div class="card border-dark">
             <div class="card-header bg-dark text-white">
               Output
-            </div>
+           </div>
             <div class="card-body">
               <iframe id="preview-window" style="width:100%;"></iframe>
             </div>
@@ -137,11 +160,166 @@
   <!-- Move the "Toggle Dark Mode" button to the bottom right side -->
   <button type="button" class="btn btn-secondary toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   <!-- Exit Fullscreen button -->
-  <button type="button" class="btn btn-danger btn-exit-fullscreen" onclick="toggleFullscreenMode()">Exit
-    Fullscreen</button>
+ 
 
   <script type="text/javascript">
+    //< let updateTimeout;
+
+  //function showPreviewWithDelay() {
+ // clearTimeout(updateTimeout);
+ // updateTimeout = setTimeout(showPreview, 300); // Adjust the delay as needed (e.g., 300 milliseconds) 
+
+
+ // document.getElementById("htmlCode").addEventListener("input", showPreviewWithDelay);
+ // document.getElementById("cssCode").addEventListener("input", showPreviewWithDelay);
+ // document.getElementById("jsCode").addEventListener("input", showPreviewWithDelay);
+
+  //  const CodeFlowEditor = CodeMirror.fromTextArea(document.getElementById("htmlCode"), {
+      // ... other options ...
+    //  lineNumbers: true,
+      //lineWrapping: true,
+      //foldGutter: true,
+      //gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    //});
+     
     // ... Existing JavaScript code ...
+    function exportCode() {
+      const htmlCode = document.getElementById("htmlCode").value;
+      const cssCode = document.getElementById("cssCode").value;
+      const jsCode = document.getElementById("jsCode").value;
+    
+      const files = [
+        { name: "index.html", content: htmlCode },
+        { name: "styles.css", content: cssCode },
+        { name: "script.js", content: jsCode }
+      ];
+    
+      files.forEach(file => {
+        const blob = new Blob([file.content], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, file.name);
+      });
+    }
+    
+    // ... Your existing JavaScript code ...
+    var bt1=document.getElementById("bt1")
+    var bt2=document.getElementById("bt2")
+    
+    var el=document.documentElement;
+    bt1.addEventListener("click",()=>{
+      if(el.requestFullscreen){
+        el.requestFullscreen()
+      }
+    })
+    bt2.addEventListener("click",()=>{
+      if(document.exitFullscreen){
+        document.exitFullscreen()
+      }
+    })
+
+     // Function to toggle fullscreen mode for the output section
+  function toggleFullscreenMode() {
+    const previewWindow = document.getElementById("preview-window");
+
+    if (!document.fullscreenElement) {
+      previewWindow.requestFullscreen()
+        .catch(err => {
+          console.error("Error attempting to enable full-screen mode:", err);
+        });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+    function toggleFullscreenMode() {
+      const body = document.body;
+      const previewWindow = document.getElementById("preview-window");
+      body.classList.toggle('fullscreen-mode');
+    
+      if (body.classList.contains('fullscreen-mode')) {
+        previewWindow.style.height = "100vh"; // Adjust preview window height in fullscreen
+        enterFullscreenMode();
+      } else {
+        previewWindow.style.height = "300px"; // Restore preview window height
+        exitFullscreenMode();
+      }
+    }
+    
+    function enterFullscreenMode() {
+      const previewWindow = document.getElementById("preview-window");
+      if (previewWindow.requestFullscreen) {
+        previewWindow.requestFullscreen();
+      } else if (previewWindow.mozRequestFullScreen) { // Firefox
+        previewWindow.mozRequestFullScreen();
+      } else if (previewWindow.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        previewWindow.webkitRequestFullscreen();
+      } else if (previewWindow.msRequestFullscreen) { // IE/Edge
+        previewWindow.msRequestFullscreen();
+      }
+    }
+    
+    function exitFullscreenMode() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+      }
+    }
+    
+       // Function to update the height of the output section
+    function updateOutputHeight() {
+      var frame = document.getElementById("preview-window");
+      var frameBody = frame.contentWindow.document.body;
+      var newHeight = frameBody.scrollHeight + "px";
+      frame.style.height = newHeight;
+    }
+
+    // Call the updateOutputHeight function whenever the preview content is updated
+    function showPreview() {
+      // ... Existing code ...
+      updateOutputHeight();
+    }
+
+    // Call the updateOutputHeight function when the iframe is loaded
+    document.getElementById("preview-window").onload = function() {
+      updateOutputHeight();
+    };
+
+    // ... Your remaining JavaScript code ...
+
+        // Function to toggle fullscreen mode for the output section
+
+    
+    function shareCode() {
+        var htmlCode = encodeURIComponent(document.getElementById("htmlCode").value); 
+        var cssCode = encodeURIComponent(document.getElementById("cssCode").value);
+        var jsCode = encodeURIComponent(document.getElementById("jsCode").value);
+      
+        var sharedUrl = window.location.origin + "/?html=" + htmlCode + "&css=" + cssCode + "&js=" + jsCode;
+      
+        prompt("Copy the URL below to share your code:", sharedUrl);
+      }
+      
+     // ... Your remaining JavaScript code ...
+  
+     // Function to run the JavaScript code in the preview iframe
+     function runCode() {
+        var jsCode = document.getElementById("jsCode").value;
+        var frame = document.getElementById("preview-window").contentWindow;
+  
+        try {
+          frame.eval(jsCode);
+        } catch (error) {
+          console.error("Error running JavaScript code:", error);
+          alert("Error running JavaScript code. Check the console for details.");
+        }
+      }
+  
+  
     function showPreview() {
       // ... Existing JavaScript function ...
       var htmlCode = document.getElementById("htmlCode").value;
@@ -256,18 +434,7 @@
       const outputSection = document.querySelector('.output-section');
       outputSection.classList.toggle('dark-mode');
     }
-    const exitFullscreenButton = document.querySelector('.btn-exit-fullscreen');
-    exitFullscreenButton.style.display = exitFullscreenButton.style.display === 'none' ? 'block' : 'none';
-    function initCodeMirrorEditor(id, mode) {
-      return CodeMirror(document.getElementById(id), {
-        value: '',
-        mode: mode,
-        lineNumbers: true,
-        indentWithTabs: true,
-        indentUnit: 4,
-        theme: 'default'
-      });
-    }
+  
     // Initialize CodeMirror editors
     var htmlCodeEditor = initCodeMirrorEditor('htmlCodeEditor', 'htmlmixed');
     var cssCodeEditor = initCodeMirrorEditor('cssCodeEditor', 'css');
