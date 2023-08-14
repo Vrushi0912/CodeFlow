@@ -85,6 +85,8 @@
                 title="Copy Code" style="float: right;" onclick="copyHtml()">Copy</button>
               <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Clear Code"
                 style="float: right; margin-right: 5px;" onclick="clearHtml()">Clear</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Export HTML"
+                style="float: right; margin-right: 5px;" onclick="exportHtml()">Export HTML</button>
             </div>
             <div class="card-body">
               <textarea id="htmlCode" class="form-control" oninput="showPreview()" rows="8"></textarea>
@@ -98,6 +100,8 @@
                 title="Copy Code" style="float: right;" onclick="copyCss()">Copy</button>
               <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Clear Code"
                 style="float: right; margin-right: 5px;" onclick="clearCss()">Clear</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Export CSS" 
+                style="float: right; margin-right: 5px;"  onclick="exportCss()">Export CSS</button>
             </div>
             <div class="card-body">
               <textarea id="cssCode" class="form-control" oninput="showPreview()" rows="8"></textarea>
@@ -111,6 +115,9 @@
                 title="Copy Code" style="float: right;" onclick="copyJs()">Copy</button>
               <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Clear Code"
                 style="float: right; margin-right: 5px;" onclick="clearJs()">Clear</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Export JS" 
+                style="float: right; margin-right: 5px;" onclick="exportJs()">Export JS</button>
+
             </div>
             <div class="card-body">
               <textarea id="jsCode" class="form-control" oninput="showPreview()" rows="8"></textarea>
@@ -128,7 +135,7 @@
       <button type="button" id="bt1"  class="btn btn-info">Full screen</button>
       <button type="button" id="bt2"  class="btn btn-danger">Close Full screen</button>
      <button type="button" class="btn btn-success" onclick="shareCode()">Share</button>
-     <button type="button" class="btn btn-success" onclick="exportCode()">Export Code</button>
+     <button type="button" class="btn btn-info" onclick="exportCode()">Export All</button>
 
 
       
@@ -369,6 +376,68 @@
       document.getElementById('jsCode').value = '';
       showPreview();
     }
+    // Add this function to your existing JavaScript code
+    function exportHtml() {
+    const htmlCode = document.getElementById("htmlCode").value;
+
+    const blob = new Blob([htmlCode], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "my_code.html");
+  }
+  function exportCss() {
+    const cssCode = document.getElementById("cssCode").value;
+    const blob = new Blob([cssCode], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "styles.css");
+  }
+  
+  function exportJs() {
+    const jsCode = document.getElementById("jsCode").value;
+    const blob = new Blob([jsCode], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "script.js");
+  }
+
+  function exportHtml() {
+    if (confirm("Are you sure you want to export the HTML code?")) {
+      const htmlCode = document.getElementById("htmlCode").value;
+      const blob = new Blob([htmlCode], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "my_code.html");
+    }
+  }
+  
+  function exportCss() {
+    if (confirm("Are you sure you want to export the CSS code?")) {
+      const cssCode = document.getElementById("cssCode").value;
+      const blob = new Blob([cssCode], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "styles.css");
+    }
+  }
+  
+  function exportJs() {
+    if (confirm("Are you sure you want to export the JavaScript code?")) {
+      const jsCode = document.getElementById("jsCode").value;
+      const blob = new Blob([jsCode], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "script.js");
+    }
+  }
+  function exportCode() {
+    if (confirm("Are you sure you want to export all code (HTML, CSS, and JavaScript)?")) {
+      const htmlCode = document.getElementById("htmlCode").value;
+      const cssCode = document.getElementById("cssCode").value;
+      const jsCode = document.getElementById("jsCode").value;
+  
+      const files = [
+        { name: "index.html", content: htmlCode },
+        { name: "styles.css", content: cssCode },
+        { name: "script.js", content: jsCode }
+      ];
+  
+      files.forEach(file => {
+        const blob = new Blob([file.content], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, file.name);
+      });
+    }
+  }
+    
+  
 
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
@@ -461,6 +530,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/addon/lint/lint.min.js"></script>
   <!-- JSHint library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jshint/2.12.0/jshint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 
 </body>
 
