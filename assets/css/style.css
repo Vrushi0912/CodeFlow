@@ -55,7 +55,7 @@ section {
   letter-spacing: 1px;
   font-weight: 700;
   margin: 0;
-  color: #4154f1;
+  color: #ffa500;
   text-transform: uppercase;
 }
 
@@ -248,7 +248,7 @@ section {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #4154f1;
+  color: #ffa500;
 }
 
 .navbar .getstarted,
